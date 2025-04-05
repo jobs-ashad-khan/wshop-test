@@ -174,10 +174,12 @@ class Product
                                 IF (produit_lang_nom IS NULL, produit_nom, produit_lang_nom) produit_nom,
                                 IF (produit_lang_description IS NULL, produit_description, produit_lang_description) produit_description
             FROM produit p
+            INNER JOIN produit_lang pl ON p.produit_id = pl.fk_produit_id
             AND pl.fk_lang_id = :lang_id
             WHERE p.produit_id = :produit_id;";
 
         $params = [
+            'lang_id' => $this->lang_id,
             'produit_id' => $array_datas['produit_id']
         ];
 
