@@ -26,6 +26,8 @@ services:
       - ./wshop-test/importSql.sql:/docker-entrypoint-initdb.d/importSql.sql
     ports:
       - ${MYSQL_PORT}:3306
+    networks:
+      - app_network
 
 volumes:
   mysql_data:
