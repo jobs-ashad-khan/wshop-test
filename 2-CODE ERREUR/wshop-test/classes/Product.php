@@ -17,7 +17,7 @@ class Product
      * @access  protected
      * @var     string
      */
-    protected static $pk_name = 'produit_ids';
+    protected static $pk_name = 'produit_id';
 
     /**
      * The object datas
