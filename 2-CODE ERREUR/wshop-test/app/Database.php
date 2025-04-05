@@ -75,7 +75,7 @@ class Database
             return false;
         }
 
-        if (!$prepare->executeSql($arrayAttributes)) {
+        if (!$prepare->execute($arrayAttributes)) {
             $this->prepare = $prepare;
             return false;
         }
