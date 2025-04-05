@@ -108,9 +108,9 @@ class Product
 	public function delete() 
 	{
 		$id = $this->getId();
-		$sql_delete = "DELETE FROM " . self::$table_name . " WHERE " . self::$pk_name . " = ?";
+		$sql_delete = "DELETE FROM " . self::$table_name . " WHERE " . self::$pk_name . " = :produit_id";
 
-		return $this->db->query($sql_delete, $id);
+		return $this->db->query($sql_delete, ['produit_id' => $id]);
 	}
 
     /**
