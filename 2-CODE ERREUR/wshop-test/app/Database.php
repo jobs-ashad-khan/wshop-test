@@ -77,7 +77,7 @@ class Database
 
         if (!$prepare->executeSql($arrayAttributes)) {
             $this->prepare = $prepare;
-            return false
+            return false;
         }
 
         $data = $prepare->fetchAll(\PDO::FETCH_ASSOC);
