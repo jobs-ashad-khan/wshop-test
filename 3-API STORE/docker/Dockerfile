@@ -4,7 +4,9 @@ ARG USER=dev
 
 # GLOBAL INSTALLATION
 RUN apt-get update && apt-get install -y \
-    curl
+    curl \
+    git \
+    unzip
 
 # APACHE CONFIGURATION
 COPY apache/vhost.conf /etc/apache2/sites-available/000-default.conf
