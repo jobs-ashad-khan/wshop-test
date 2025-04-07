@@ -13,5 +13,7 @@
             "email": "jobs.ashad.khan@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/dotenv": "^7.2"
+    }
 }
