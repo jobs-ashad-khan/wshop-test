@@ -7,8 +7,6 @@ use App\Kernel;
 use App\Rooting\AttributeRouteLoader;
 use Symfony\Component\HttpFoundation\Request;
 
-$routes = require __DIR__ . '/../config/routes.php';
-
 $request = Request::createFromGlobals();
 
 $routeLoader = new AttributeRouteLoader([
