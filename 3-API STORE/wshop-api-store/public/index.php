@@ -39,6 +39,16 @@ try {
     $controller = new $controllerInfo[0]();
     $method = $controllerInfo[1];
 
+    $reflection = new \ReflectionMethod($controller, $method);
+    $params = $reflection->getParameters();
+
+    $paramTypes = array_map(fn($param) => $param->getType()?->getName(), $params);
+
+    if (in_array(Request::class, $paramTypes, true)) {
+        $parameters[] = $request;
+    }
+
+    $parameters = array_values($parameters);
     $response = call_user_func_array([$controller, $method], $parameters);
 } catch (ResourceNotFoundException $e) {
     $response = new JsonResponse(['message' => 'Data not found'], Response::HTTP_NOT_FOUND);

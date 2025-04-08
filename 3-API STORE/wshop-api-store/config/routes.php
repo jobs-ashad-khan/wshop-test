@@ -23,4 +23,13 @@ $routes->add(
     )
 );
 
+$routes->add(
+    'update_store',
+    new Route(
+        '/stores/{id}',
+        ['_controller' => [App\Controller\StoreController::class, 'update']],
+        methods: ['PUT', 'PATCH']
+    )
+);
+
 return $routes;
