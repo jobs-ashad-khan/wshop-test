@@ -27,7 +27,7 @@ class StoreController
         ]
     ];
 
-     #[Route(path: '/stores', name: 'list_stores', methods: ['GET'])]
+    #[Route(path: '/stores', name: 'list_stores', methods: ['GET'])]
     public function list(): Response
     {
         return new JsonResponse(["stores" => $this->stores]);
