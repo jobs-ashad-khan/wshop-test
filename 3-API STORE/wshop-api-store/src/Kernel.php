@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Controller\StoreController;
 use App\Rooting\AttributeRouteLoader;
+use App\Rooting\ControllerScanner;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +23,8 @@ class Kernel
 
     private function initRoutes(): void
     {
-        $this->routes = AttributeRouteLoader::load([
-           StoreController::class
-        ]);
+        $controllers = ControllerScanner::scan(__DIR__ . '/Controller');
+        $this->routes = AttributeRouteLoader::load($controllers);
     }
 
     public function handle(Request $request)
