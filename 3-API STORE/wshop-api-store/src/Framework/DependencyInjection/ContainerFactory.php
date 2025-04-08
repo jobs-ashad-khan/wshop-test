@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Framework;
+namespace App\Framework\DependencyInjection;
 
-use App\Controller\StoreController;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ContainerFactory
@@ -12,8 +10,9 @@ class ContainerFactory
     {
         $container = new ContainerBuilder();
 
-        $container->register(StoreController::class, StoreController::class)
-            ->addArgument([]);
+        ServiceLoader::load($container);
+
+        $container->compile();
 
         return $container;
     }

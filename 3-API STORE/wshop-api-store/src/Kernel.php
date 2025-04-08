@@ -2,8 +2,7 @@
 
 namespace App;
 
-use App\Controller\StoreController;
-use App\Framework\ContainerFactory;
+use App\Framework\DependencyInjection\ContainerFactory;
 use App\Framework\Rooting\AttributeRouteLoader;
 use App\Framework\Rooting\ControllerScanner;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
