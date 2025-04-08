@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exception\ApiInvalidDataException;
+use App\Exception\ApiNotFoundException;
 use App\Framework\DependencyInjection\ContainerFactory;
 use App\Framework\Rooting\AttributeRouteLoader;
 use App\Framework\Rooting\ControllerScanner;
@@ -56,8 +58,12 @@ class Kernel
 
             $parameters = array_values($parameters);
             $response = call_user_func_array([$controller, $method], $parameters);
+        } catch (ApiInvalidDataException $e) {
+            $response = new JsonResponse(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
+        } catch (ApiNotFoundException $e) {
+            $response = new JsonResponse(['message' => $e->getMessage()], Response::HTTP_NOT_FOUND);
         } catch (ResourceNotFoundException $e) {
-            $response = new JsonResponse(['message' => 'Data not found'], Response::HTTP_NOT_FOUND);
+            $response = new JsonResponse(['message' => 'Resource not found'], Response::HTTP_NOT_FOUND);
         } catch (\Exception $e) {
             $response = new JsonResponse(['message' => 'Internal Error'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
