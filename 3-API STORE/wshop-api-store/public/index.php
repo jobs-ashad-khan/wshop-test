@@ -1,18 +1,12 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../config/bootstrap.php';
 
-use App\Controller\StoreController;
 use App\Kernel;
-use App\Rooting\AttributeRouteLoader;
 use Symfony\Component\HttpFoundation\Request;
 
 $request = Request::createFromGlobals();
 
-$routeLoader = new AttributeRouteLoader([
-    StoreController::class
-]);
-
-$response = new Kernel($routeLoader)->handle($request);
+$response = new Kernel()->handle($request);
 
 $response->send();

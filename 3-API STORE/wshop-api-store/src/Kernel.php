@@ -2,21 +2,30 @@
 
 namespace App;
 
-use App\Rooting\RouteLoaderInterface;
+use App\Controller\StoreController;
+use App\Rooting\AttributeRouteLoader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouteCollection;
 
 class Kernel
 {
-    private $routes;
+    private RouteCollection $routes;
 
-    public function __construct(RouteLoaderInterface $routeLoader)
+    public function __construct()
     {
-        $this->routes = $routeLoader->getRoutes();
+        $this->initRoutes();
+    }
+
+    private function initRoutes(): void
+    {
+        $this->routes = AttributeRouteLoader::load([
+           StoreController::class
+        ]);
     }
 
     public function handle(Request $request)

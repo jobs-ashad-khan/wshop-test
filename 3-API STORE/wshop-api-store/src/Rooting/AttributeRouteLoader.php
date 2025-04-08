@@ -6,22 +6,13 @@ use App\Attribute\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 
-class AttributeRouteLoader implements RouteLoaderInterface
+class AttributeRouteLoader
 {
-    private array $controllers;
-
-    public function __construct(array $controllers = []) {
-        $this->controllers = $controllers;
-    }
-
-    /**
-     * @throws \ReflectionException
-     */
-    public function getRoutes(): RouteCollection
+    public static function load(array $controllers): RouteCollection
     {
         $routes = new RouteCollection();
 
-        foreach ($this->controllers as $controllerClass) {
+        foreach ($controllers as $controllerClass) {
             $reflection = new \ReflectionClass($controllerClass);
             foreach ($reflection->getMethods() as $method) {
                 foreach ($method->getAttributes(Route::class) as $attribute) {
