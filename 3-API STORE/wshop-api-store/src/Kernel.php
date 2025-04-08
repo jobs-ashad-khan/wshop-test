@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Rooting\AttributeRouteLoader;
-use App\Rooting\ControllerScanner;
+use App\Framework\Rooting\AttributeRouteLoader;
+use App\Framework\Rooting\ControllerScanner;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

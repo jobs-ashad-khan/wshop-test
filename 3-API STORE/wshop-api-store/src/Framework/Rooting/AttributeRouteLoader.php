@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Rooting;
+namespace App\Framework\Rooting;
 
-use App\Attribute\Route;
-use Symfony\Component\Routing\RouteCollection;
+use App\Framework\Attribute\Route;
 use Symfony\Component\Routing\Route as SymfonyRoute;
+use Symfony\Component\Routing\RouteCollection;
 
 class AttributeRouteLoader
 {

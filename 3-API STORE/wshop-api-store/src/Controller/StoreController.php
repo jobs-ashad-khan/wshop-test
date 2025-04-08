@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Attribute\Route;
+use App\Framework\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
