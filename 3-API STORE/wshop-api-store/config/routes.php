@@ -15,6 +15,15 @@ $routes->add(
 );
 
 $routes->add(
+    'create_store',
+    new Route(
+        '/stores',
+        ['_controller' => [App\Controller\StoreController::class, 'create']],
+        methods: ['POST']
+    )
+);
+
+$routes->add(
     'read_store',
     new Route(
         '/stores/{id}',
