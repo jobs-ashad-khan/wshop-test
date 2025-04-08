@@ -2,8 +2,11 @@
 
 namespace App;
 
+use App\Controller\StoreController;
+use App\Framework\ContainerFactory;
 use App\Framework\Rooting\AttributeRouteLoader;
 use App\Framework\Rooting\ControllerScanner;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +17,12 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Kernel
 {
+    private ContainerBuilder $container;
     private RouteCollection $routes;
 
     public function __construct()
     {
+        $this->container = ContainerFactory::create();
         $this->initRoutes();
     }
 
@@ -36,12 +41,10 @@ class Kernel
 
         try {
             $parameters = $matcher->match($request->getPathInfo());
+            [$controllerClass, $method] = $parameters['_controller'];
 
-            $controllerInfo = $parameters['_controller'];
+            $controller = $this->container->get($controllerClass);
             unset($parameters['_controller'], $parameters['_route']);
-
-            $controller = new $controllerInfo[0]();
-            $method = $controllerInfo[1];
 
             $reflection = new \ReflectionMethod($controller, $method);
             $params = $reflection->getParameters();
