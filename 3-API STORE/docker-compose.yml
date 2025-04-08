@@ -14,6 +14,24 @@ services:
     networks:
       - api_network
 
+  mysql:
+    image: mysql:latest
+    container_name: wshop_api_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql_api_data:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT}:3306
+    networks:
+      - api_network
+
+volumes:
+  mysql_api_data:
+    driver: local
+
 networks:
   api_network:
     driver: bridge
