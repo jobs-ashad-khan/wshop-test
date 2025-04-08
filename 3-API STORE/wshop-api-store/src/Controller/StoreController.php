@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Attribute\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,11 +27,13 @@ class StoreController
         ]
     ];
 
+     #[Route(path: '/stores', name: 'list_stores', methods: ['GET'])]
     public function list(): Response
     {
         return new JsonResponse(["stores" => $this->stores]);
     }
 
+    #[Route(path: '/stores', name: 'create_store', methods: ['POST'])]
     public function create(Request $request): Response
     {
         $store = [];
@@ -56,6 +59,7 @@ class StoreController
         return new JsonResponse(["store" => $store], Response::HTTP_CREATED);
     }
 
+    #[Route(path: '/stores/{id}', name: 'read_store', methods: ['GET'])]
     public function read(int $id): Response
     {
         $store = array_find($this->stores, function ($store) use ($id) { return $store['id'] == $id; });
@@ -63,6 +67,7 @@ class StoreController
         return new JsonResponse(["store" => $store]);
     }
 
+    #[Route(path: '/stores/{id}', name: 'update_store', methods: ['PUT', 'PATH'])]
     public function update(int $id, Request $request): Response
     {
         $store = array_find($this->stores, function ($store) use ($id) { return $store['id'] == $id; });
@@ -82,6 +87,7 @@ class StoreController
         return new JsonResponse(["store" => $store]);
     }
 
+    #[Route(path: '/stores/{id}', name: 'delete_store', methods: ['DELETE'])]
     public function delete(int $id): Response
     {
         $storeKey = array_find_key($this->stores, function ($store) use ($id) { return $store['id'] == $id; });

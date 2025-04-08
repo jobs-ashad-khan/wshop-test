@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Rooting\RouteLoaderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,9 @@ class Kernel
 {
     private $routes;
 
-    public function __construct()
+    public function __construct(RouteLoaderInterface $routeLoader)
     {
-        $this->routes = require __DIR__ . '/../config/routes.php';
+        $this->routes = $routeLoader->getRoutes();
     }
 
     public function handle(Request $request)
