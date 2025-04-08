@@ -81,4 +81,13 @@ class StoreController
 
         return new JsonResponse(["store" => $store]);
     }
+
+    public function delete(int $id): Response
+    {
+        $storeKey = array_find_key($this->stores, function ($store) use ($id) { return $store['id'] == $id; });
+        unset($this->stores[$storeKey]);
+        $this->stores = array_values($this->stores);
+
+        return new JsonResponse([]);
+    }
 }

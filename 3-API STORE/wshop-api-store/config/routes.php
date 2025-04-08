@@ -41,4 +41,13 @@ $routes->add(
     )
 );
 
+$routes->add(
+    'delete_store',
+    new Route(
+        '/stores/{id}',
+        ['_controller' => [App\Controller\StoreController::class, 'delete']],
+        methods: ['DELETE']
+    )
+);
+
 return $routes;
