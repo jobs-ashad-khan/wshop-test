@@ -29,4 +29,11 @@ class StoreController
     {
         return new JsonResponse(["stores" => self::STORES]);
     }
+
+    public function read(int $id): Response
+    {
+        $store = array_find(self::STORES, function ($store) use ($id) { return $store['id'] == $id; });
+
+        return new JsonResponse(["store" => $store]);
+    }
 }
