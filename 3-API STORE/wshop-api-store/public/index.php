@@ -3,6 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use App\Kernel;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,9 +41,9 @@ try {
 
     $response = call_user_func_array([$controller, $method], $parameters);
 } catch (ResourceNotFoundException $e) {
-    $response = new Response('Not Found', 404);
+    $response = new JsonResponse(['message' => 'Data not found'], Response::HTTP_NOT_FOUND);
 } catch (Exception $e) {
-    $response = new Response('Error: ' . $e->getMessage(), 500);
+    $response = new JsonResponse(['message' => 'Internal Error'], Response::HTTP_INTERNAL_SERVER_ERROR);
 }
 
 $response->send();
