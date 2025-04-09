@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Exception\ApiInvalidDataException;
 use App\Exception\ApiNotFoundException;
-use App\Framework\Attribute\Route;
+use App\Infrastructure\Framework\Attribute\Route;
 use App\Service\StoreService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

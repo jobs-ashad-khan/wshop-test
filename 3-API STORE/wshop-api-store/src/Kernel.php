@@ -4,9 +4,9 @@ namespace App;
 
 use App\Exception\ApiInvalidDataException;
 use App\Exception\ApiNotFoundException;
-use App\Framework\DependencyInjection\ContainerFactory;
-use App\Framework\Rooting\AttributeRouteLoader;
-use App\Framework\Rooting\ControllerScanner;
+use App\Infrastructure\Framework\DependencyInjection\ContainerFactory;
+use App\Infrastructure\Framework\Rooting\AttributeRouteLoader;
+use App\Infrastructure\Framework\Rooting\ControllerScanner;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
