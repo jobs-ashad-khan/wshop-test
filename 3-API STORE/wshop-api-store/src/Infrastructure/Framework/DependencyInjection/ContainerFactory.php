@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Framework\DependencyInjection;
+namespace App\Infrastructure\Framework\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-use Symfony\Component\Config\FileLocator;
 
 class ContainerFactory
 {
@@ -15,7 +15,7 @@ class ContainerFactory
     {
         $container = new ContainerBuilder();
 
-        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../../config'));
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../../../../config'));
         $loader->load('services.php');
 
         $container->compile();

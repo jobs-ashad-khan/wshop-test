@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Rooting;
+namespace App\Infrastructure\Framework\Rooting;
 
 class ControllerScanner
 {

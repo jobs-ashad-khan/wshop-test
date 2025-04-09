@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Framework\Rooting;
+namespace App\Infrastructure\Framework\Rooting;
 
-use App\Framework\Attribute\Route;
+use App\Infrastructure\Framework\Attribute\Route;
 use Symfony\Component\Routing\Route as SymfonyRoute;
 use Symfony\Component\Routing\RouteCollection;
 
