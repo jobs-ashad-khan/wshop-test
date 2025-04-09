@@ -17,6 +17,7 @@
         "symfony/dotenv": "^7.2",
         "symfony/routing": "^7.2",
         "symfony/http-foundation": "^7.2",
-        "symfony/dependency-injection": "^7.2"
+        "symfony/dependency-injection": "^7.2",
+        "symfony/config": "^7.2"
     }
 }
