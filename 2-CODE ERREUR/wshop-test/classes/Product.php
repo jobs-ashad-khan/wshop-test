@@ -1,7 +1,7 @@
 <?php
 namespace FwTest\Classes;
 
-class ProductAction
+class Product
 {
     /**
      * The table name
@@ -17,7 +17,7 @@ class ProductAction
      * @access  protected
      * @var     string
      */
-    protected static $pk_name = 'produit_ids';
+    protected static $pk_name = 'produit_id';
 
     /**
      * The object datas
@@ -85,7 +85,7 @@ class ProductAction
      */
 	public static function getAll($db, $begin = 0, $end = 15)
 	{
-		$sql_get = "SELECT p.* FROM " . self::$table_name . " LIMIT " . $begin. ", " . $end;
+		$sql_get = "SELECT p.* FROM " . self::$table_name . " p LIMIT " . $begin. ", " . $end;
 
 		$result = $db->fetchAll($sql_get);
 
@@ -108,9 +108,9 @@ class ProductAction
 	public function delete() 
 	{
 		$id = $this->getId();
-		$sql_delete = "DELETE FROM " . self::$table_name . " WHERE " . self::$pk_name . " = ?";
+		$sql_delete = "DELETE FROM " . self::$table_name . " WHERE " . self::$pk_name . " = :produit_id";
 
-		return $this->db->query($sql_delete, $id);
+		return $this->db->query($sql_delete, ['produit_id' => $id]);
 	}
 
     /**
@@ -174,10 +174,12 @@ class ProductAction
                                 IF (produit_lang_nom IS NULL, produit_nom, produit_lang_nom) produit_nom,
                                 IF (produit_lang_description IS NULL, produit_description, produit_lang_description) produit_description
             FROM produit p
+            INNER JOIN produit_lang pl ON p.produit_id = pl.fk_produit_id
             AND pl.fk_lang_id = :lang_id
             WHERE p.produit_id = :produit_id;";
 
         $params = [
+            'lang_id' => $this->lang_id,
             'produit_id' => $array_datas['produit_id']
         ];
 
