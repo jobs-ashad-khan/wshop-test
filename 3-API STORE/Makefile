@@ -7,6 +7,9 @@ down:
 restart:
 	docker compose -f ./docker-compose.yml restart
 
+install:
+	docker exec -u dev -it wshop_api_store composer install
+
 api:
 	docker exec -u dev -it wshop_api_store bash
 
