@@ -23,6 +23,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - mysql_api_data:/var/lib/mysql
+      - ./docker/db/mysql:/docker-entrypoint-initdb.d
     ports:
       - ${MYSQL_PORT}:3306
     networks:

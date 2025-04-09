@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip
 
+# Install mysql driver
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 # APACHE CONFIGURATION
 COPY apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
