@@ -4,6 +4,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 
 return function (ContainerConfigurator $configurator) {
 
+
     $services = $configurator->services()
         ->defaults()
         ->autowire()
@@ -21,4 +22,8 @@ return function (ContainerConfigurator $configurator) {
 
     // Alias des Interfaces vers leur Implémentation
     $services->alias(App\Repository\StoreRepositoryInterface::class, App\Repository\StoreRepository::class);
+
+    // Utiliser une méthode de fabrique pour récupérer la connexion
+    $services->set(App\Infrastructure\Database\DatabaseConnectionInterface::class)
+        ->factory([App\Infrastructure\Database\DatabaseConnectionManager::class, 'getConnection']);
 };
