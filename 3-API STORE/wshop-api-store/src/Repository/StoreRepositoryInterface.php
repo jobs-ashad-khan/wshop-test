@@ -4,7 +4,7 @@ namespace App\Repository;
 
 interface StoreRepositoryInterface
 {
-    public function findAll(): array;
+    public function findAll(array $params = []): array;
 
     public function find(int $id): ?array;
 

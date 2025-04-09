@@ -13,9 +13,40 @@ class StoreRepository implements StoreRepositoryInterface
         $this->connection = $connection;
     }
 
-    public function findAll(): array
+    public function findAll(array $params = []): array
     {
         $sql = "SELECT * FROM store";
+
+        $filters = [];
+        if (isset($params['filters'])) {
+            $filters = array_map(function ($value, $key) {
+                return "{$key} LIKE '%{$value}%'";
+            }, $params['filters'], array_keys($params['filters']));
+        }
+
+        if (!empty($filters)) {
+            $sql .= " WHERE " . implode(" AND ", $filters);
+        }
+
+        $sorts = [];
+        if (isset($params['sorts'])) {
+            $sorts = array_map(function ($value, $key) {
+                return "{$key} {$value}";
+            }, $params['sorts'], array_keys($params['sorts']));
+        }
+
+        if (!empty($sorts)) {
+            $sql .= " ORDER BY " . implode(", ", $sorts);
+        }
+
+        if (isset($params['limit'])) {
+            $sql .= " LIMIT {$params['limit']}";
+        }
+
+        if (isset($params['offset'])) {
+            $sql .= " OFFSET {$params['offset']}";
+        }
+
         return $this->connection->query($sql);
     }
 

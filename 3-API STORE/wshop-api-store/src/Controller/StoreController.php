@@ -20,9 +20,9 @@ class StoreController
     }
 
     #[Route(path: '/stores', name: 'list_stores', methods: ['GET'])]
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $stores = $this->storeService->getStores();
+        $stores = $this->storeService->getStores($request->query->all());
         return new JsonResponse(["stores" => $stores]);
     }
 

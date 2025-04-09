@@ -29,9 +29,9 @@ class StoreService
         return $store;
     }
 
-    public function getStores(): array
+    public function getStores(array $params = []): array
     {
-        return $this->storeRepository->findAll();
+        return $this->storeRepository->findAll($params);
     }
 
     /**
