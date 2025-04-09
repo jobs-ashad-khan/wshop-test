@@ -1,0 +1,23 @@
+{
+    "name": "khan/wshop-api-store",
+    "description": "API to manage stores",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khan Ashad",
+            "email": "jobs.ashad.khan@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^7.2",
+        "symfony/routing": "^7.2",
+        "symfony/http-foundation": "^7.2",
+        "symfony/dependency-injection": "^7.2",
+        "symfony/config": "^7.2"
+    }
+}
