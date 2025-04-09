@@ -26,7 +26,7 @@ Clonez le dépôt et accédez au dossier du projet :
 
 ```sh
   git clone git@github.com:jobs-ashad-khan/wshop-test.git
-  cd wshop-test
+  cd 3-API\ STORE/
 ```
 
 Créez un fichier `.env.local` à la racine et surchargez-le avec vos variables d'environnement si nécessaire
